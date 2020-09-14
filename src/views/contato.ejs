@@ -12,7 +12,11 @@
 
       <%- include('includes/messages'); %>
 
+      <% if(contato._id) { %>
+      <form action="/contato/edit/<%= contato._id %>" method="POST">
+      <% } else { %>
       <form action="/contato/register" method="POST">
+      <% } %>
         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
 
         <div class="form-group">
@@ -34,8 +38,11 @@
           <label>Telefone</label>
           <input value="<%= contato.telefone %>" type="tel" class="form-control" name="telefone">
         </div>
-
+        <% if(contato._id) { %>
+          <button type="submit" class="btn btn-primary">Editar</button>
+        <% } else { %>
         <button type="submit" class="btn btn-primary">Salvar</button>
+        <% } %>
       </form>
 
     </div>
